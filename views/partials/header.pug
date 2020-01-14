@@ -1,0 +1,15 @@
+header
+    .header_colum
+        a(href=routes.home)
+            h1 #{siteName}
+            i.fab.fa-youtube
+    .header_colum
+        form(action=routes.search, method="get")
+            input(tyep="text", placeholder="serch by term" name="term")
+    .header_colum        
+
+        ui
+            li
+                a(href=routes.join) Join
+            li
+                a(href=routes.login) Log In                    
