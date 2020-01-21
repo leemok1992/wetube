@@ -30,6 +30,7 @@ app.set("view engine","pug");
 //우리는 set을 이용하여 view engine 설정을 바꿀것이다 app.set("view engine","pug")
 app.use(localsMidWear);
 
+app.use("/uploads", express.static("uploads"))
 app.use(routes.user, userRouter);
 app.use(routes.home, homeRouter);
 app.use(routes.video, videoRouter);

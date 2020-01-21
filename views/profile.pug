@@ -1,0 +1,10 @@
+extends layout/main
+
+block content
+    .proFile_formBox
+        form(action=routes.EDIT_PROFILE, method="post")
+            label(for="avatar") Avatar
+            input(type="file", id="avatar", name="avartar")
+            input(type="text", placeholder="email", name="email")
+            input(type="submit", value="update avatar")
+        a.form_box_link(href=`/user${routes.CHANGE_PASSWORD}`) change password   

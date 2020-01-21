@@ -1,0 +1,7 @@
+
+mixin videoBlock(videosForm = {})
+    .videoBlock
+        a(href=routes.VIDEO_DETAIL(videosForm.id))
+            video.videoBlock_video(src=videosForm.videoFile, controls=true)
+            h1.videoBlock_title=videosForm.title
+            h2.videoBlock_views=videosForm.views
