@@ -36,9 +36,42 @@ export const startUpload = async(req,res) => {
         res.redirect(routes.VIDEO_DETAIL(NewVideo.id))
 }
 
-export const videoDetail = (req,res) => res.render("videoDetail");
+export const videoDetail = async(req,res) => {
+    const {
+        params:{ id }
+    }=req;
+    try{
+        const foundvideo = await videoModel.findById(id);
+        res.render("videoDetail",{ pageTitle: "videoDetail", foundvideo});
+    }catch(error){
+        res.redirect(routes.home);
+    }
+}
 
-export const EDITVIDEO = (req,res) => res.render("editVideo");
+export const getEDITVIDEO = async(req,res) => {
+    const {
+        params: {id},
+    } = req;
+    try{
+        const video = await videoModel.findById(id);
+        res.render("editVideo",{pageTitle : "edit video",video})
+    } catch(error){
+        res.redirect(routes.home);
+    }
+}
+
+export const postEDITVIDEO = async(req,res) => {
+    const {
+        params: {id},
+        body: {title ,description}
+    } = req;
+    try{
+        await videoModel.findOneAndUpdate({_id : id} ,{title,description})
+        res.redirect(routes.VIDEO_DETAIL(id))
+    } catch(error){
+        res.redirect(routes.home);
+    }
+};
 
 export const DELETEVIDEO = (req,res) => res.render("deleteVideo");
 

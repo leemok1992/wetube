@@ -1,3 +1,10 @@
 extends layout/main
 
 block content
+    .video_player
+        video(src=`/${foundvideo.fileUrl}`)
+    .video_info
+        a(href=routes.EDIT_VIDEO(foundvideo.id)) edit video
+        h5.video_title=foundvideo.title
+        span.video_views=foundvideo.views
+        p.video_description=foundvideo.description   

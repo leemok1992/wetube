@@ -23,6 +23,7 @@ app.use(badyParser.json());
 app.use(badyParser.urlencoded({extended: true}));
 app.use(morgan("dev"));
 app.set("view engine","pug");
+app.use("/uploads", express.static("uploads"))
 //작업하는html 의 위치는 /views 로 해야한다
 //pug install = !-npm install pug
 //app.set함수 에는 name과 value가 필요하다
@@ -30,7 +31,6 @@ app.set("view engine","pug");
 //우리는 set을 이용하여 view engine 설정을 바꿀것이다 app.set("view engine","pug")
 app.use(localsMidWear);
 
-app.use("/uploads", express.static("uploads"))
 app.use(routes.user, userRouter);
 app.use(routes.home, homeRouter);
 app.use(routes.video, videoRouter);
