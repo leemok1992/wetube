@@ -5,6 +5,10 @@ import morgan from "morgan";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import badyParser from "body-parser";
+import passport from "passport";
+import mongoose from "mongoose";
+import session from "express-session";
+import mongoStore from "connect-mongo";
 
 // routers
 import userRouter from "./routers/userRouter";
@@ -12,8 +16,10 @@ import homeRouter from "./routers/homeRouter";
 import videoRouter from "./routers/videoRouter";
 import routes from "./routes";
 import { localsMidWear } from "./middleWear";
+import "./passport";
 
 const app = express();
+const CookieStore = mongoStore(session);
 
 // 쿠키를 전달받아서 사용할수있도록한다 사용자 인증 같은 곳에서 쿠키를 검사할때사용
 app.use(cookieParser());
@@ -23,9 +29,19 @@ app.use(helmet());
 app.use(badyParser.json());
 app.use(badyParser.urlencoded({ extended: true }));
 app.use(morgan("dev"));
+app.use(
+  session({
+    secret: process.env.COOKIE_SECRET,
+    resave: true,
+    saveUninitialized: false,
+    store: new CookieStore({ mongooseConnection: mongoose.connection })
+  })
+);
 app.set("view engine", "pug");
 app.use("/uploads", express.static("uploads"));
 app.use("/static", express.static("static"));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // 작업하는html 의 위치는 /views 로 해야한다
 // pug install = !-npm install pug
