@@ -1,3 +1,17 @@
 extends layout/main
 
 block content
+    .video-detail_container
+        .video_player
+            video(src= `/${foundvideo.fileUrl}`)
+        .videp_info
+            a(href=routes.EDIT_VIDEO(foundvideo.id)) edit video
+            h5.video_title=foundvideo.title
+            span.vidoe_views=foundvideo.views
+            p.video_description=foundvideo.description
+        .video_comments
+            if foundvideo.comments === 1
+                span.video_comments-number 1 comment
+            else 
+                span.video_comments-numbers ``
+        

@@ -1,10 +1,20 @@
 extends layout/main
 
 block content
-    .video_player
-        video(src=`/${foundvideo.fileUrl}`)
-    .video_info
-        a(href=routes.EDIT_VIDEO(foundvideo.id)) edit video
-        h5.video_title=foundvideo.title
-        span.video_views=foundvideo.views
-        p.video_description=foundvideo.description   
+    .video_detail_container
+        .video_player
+            video(src=`/${foundvideo.fileUrl}`)
+        .video_info
+            a(href=routes.EDIT_VIDEO(foundvideo.id)) 
+                button edit video
+            h5.video_title=foundvideo.title
+            if foundvideo.views === 1
+                span.video_views 1 view
+            else
+                span.video_views #{foundvideo.views} views
+            p.video_description=foundvideo.description   
+        //.video_comments    
+            if video.comments.length === 1
+                span.video_comment-number 1 comment
+            else
+                span.video_comments-number #{foundvideo.comments.length} comments//

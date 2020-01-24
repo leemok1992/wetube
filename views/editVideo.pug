@@ -1,9 +1,10 @@
 extends layout/main
 
 block content
-    .edit_video_box
+    .form_box
         form.edit_video_form(action=routes.EDIT_VIDEO(video.id) ,method="post")
             input(type="text", placeholder="title", name="title" ,required= true ,value=video.title)
             textarea(name="description",placeholder="description",required= true)=video.description
             input(type="submit" ,value="edit video")
-        a(href=routes.DELETE_VIDEO) edit video
+        a(href=routes.DELETE_VIDEO(video.id)) 
+            button delete video

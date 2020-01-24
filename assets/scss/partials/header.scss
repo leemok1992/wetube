@@ -1,0 +1,55 @@
+.header {
+  width: 100%;
+  background-color: $bgColor;
+  margin-bottom: 80px;
+  a {
+    text-decoration: none;
+    color: white;
+  }
+  .header_wrapper {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 1000px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    .header_colum {
+      height: inherit;
+      &:nth-child(2) {
+        justify-self: center;
+        width: 100%;
+      }
+      &:last-child {
+        justify-self: end;
+      }
+      a {
+        display: flex;
+        i {
+          font-size: 45px;
+        }
+        h1 {
+          padding-top: 12px;
+          padding-left: 15px;
+          font-size: 20px;
+        }
+      }
+      form {
+        width: 100%;
+        input {
+          padding: 6px 10px;
+          width: 100%;
+          border-radius: 5px;
+        }
+      }
+      ul {
+        display: flex;
+        list-style: none;
+        font-weight: 600;
+        text-transform: uppercase;
+        li {
+          margin-right: 15px;
+        }
+      }
+    }
+  }
+}
